@@ -1,0 +1,452 @@
+
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <title>MNML for Android</title>
+  <style>
+    @font-face {
+      font-family: interstatem;
+      src: url(interstate-m.ttf);
+    }
+    @font-face {
+      font-family: interstatet;
+      src: url(interstate-t.ttf);
+    }
+    body {
+      height: 100%;
+      margin: 0;
+      color: #8F8D8E;
+      font: 16px "Helvetica Neue", Helvetica, arial, freesans, clean, sans-serif;
+      background-image: url('bg.png');
+      padding: 20px;
+      cursor: crosshair;
+    }
+    a {
+      cursor: crosshair;
+    }
+    header {
+      height: 95px;
+    }
+    header .nav {
+      float: right;
+      font-weight: 100;
+      font-size: 25px;
+      padding-top: 20px;
+    }
+    header .nav a {
+      padding: 0 5px;
+      text-decoration: none;
+      color: rgba(102, 89, 92, 0.35);
+    }
+    header .nav a:hover {
+      text-decoration: underline;
+      color: #4E4D4D;
+    }
+    h2 {
+      margin: 0;
+    }
+    svg {
+      height: 60px;
+      width: 60px;
+      margin: auto;
+      vertical-align: middle;
+    }
+    circle {
+      fill: #000;
+    }
+    circle:hover {
+      fill: #4E4D4D; 
+    }
+    section.intro {
+      text-align: center;
+    }
+    section.intro .note {
+      padding-top: 30px;
+      font-size: 10px;
+    }
+    .phone {
+      color: white;
+      position: relative;
+      font-size: 10px;
+      height: 500px;
+      width: 260px;
+      margin: auto;
+      margin-top: 45px;
+      margin-bottom: 45px;
+    }
+    .phone .app {
+      width: 220px;
+      padding: 60px 20px;
+    }
+    #overlay {
+      height: 387px;
+      width: 220px;
+      background: rgba(0, 0, 0, .3);
+      opacity: 0;
+      position: absolute; 
+      top: 61px;
+    }
+    #menu {
+      width: 190px;
+      background: rgb(30, 40, 40);
+      margin: 0 auto;
+      margin-top: 150px;
+      box-shadow: 0px 2px 10px #000;
+      border-top: 1px solid #333;
+      border-radius: 2px;
+      text-align: left;
+    }
+    #menutitle {
+      border-bottom: 3px solid #33B5E5;
+      color: #33B5E5;
+      font-size: 17px;
+      padding: 7px 0px 7px 10px;
+    }
+    #menutitle img {
+      height: 30px;
+      vertical-align: top;
+    }
+    #menutitle span {
+      padding: 5px;
+      display: inline-block;
+    }
+    #menu .menuoption {
+      font-size: 14px;
+      border-bottom: 1px solid #444;
+      padding: 7px 0px 7px 10px;
+    }
+    #menu .menuoption:last-child {
+      border-bottom: none; 
+    }
+    #menu .selected {
+      background-color: rgba(51, 181, 229, 0.75);
+    }
+    #slider {
+      height: 387px;
+      overflow: hidden;
+    }
+    #date {
+      font: 10px interstatem;
+      float: left;
+      padding: 10px;
+    }
+    #sun {
+      font: 10px interstatem;
+      float: right;
+      padding: 10px;
+    }
+    #time {
+      font: 47px interstatet;
+      padding-top: 150px;
+      width: 220px;
+    }
+    #weather {
+      font: 10px interstatem;
+      width: 220px;
+    }
+    #drawer {
+      padding-top: 25px;
+    }
+    #drawer2 {
+      padding-top: 25px;
+    }
+    .drawer {
+      position: relative;
+      left: 220px;
+    }
+    .drawer img {
+      height: 32px;
+      padding-left: 15px;
+      padding-top: 2px;
+      margin: -4px; 
+    }
+    .drawer-handle {
+      float: left;
+      margin-left: -25px;
+      padding-top: 8px;
+    }
+    .drawer-contents {
+      background-color: rgba(200, 200, 200, .2);
+      text-align: right;
+      padding: 1px 10px 1px 0px;
+    }
+    #packages {
+      width: 220px;
+      padding-top: 210px;
+      font-size: 8.5px;
+    }
+    .phone .app .package {
+      display: inline-block;
+      width: 45px;
+      height: 55px;
+      overflow: hidden;
+    }
+    .phone .app .package .dark {
+      background-color: rgba(0, 0, 0, .4) !important;
+    }
+    #slider .package img {
+      height: 35px;
+      background-color: rgba(200, 200, 200, .3);
+      padding: 2px;
+      border-radius: 8px;
+      margin-bottom: -2px;
+    }
+    #phonebg {
+      height: 387px;
+      top: 61px;
+      z-index: -1;
+    }
+    #phonenav {
+      height: 22px;
+      top: 418px;
+    }
+    .phone .chrome {
+      position: absolute;
+      height: 500px;
+      left: 0px;
+      top: 0px;
+      right: 0px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .logo {
+      float: left;
+    }
+    #home {
+        color: #8F8D8E;
+    }
+    .name {
+      line-height: 1.2;
+      padding-left: 18px;
+      font-size: 52px;
+      font-weight: 100;
+      vertical-align: middle;
+      letter-spacing: -7px;
+    }
+    a.button {
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+      padding: 7px 12px;
+      font-size: 13px;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+      white-space: nowrap;
+      border-radius: 3px;
+      border: 1px solid #d5d5d5;
+      vertical-align: middle;
+      cursor: pointer;
+      color: #fff;
+      background-color: #60b044;
+      background-image: -moz-linear-gradient(#8add6d, #60b044);
+      background-image: -webkit-linear-gradient(#8add6d, #60b044);
+      background-image: linear-gradient(#8add6d, #60b044);
+      background-repeat: repeat-x;
+      border-color: #5ca941;
+    }
+    .button:hover {
+      background-color: #5b9a65;
+      background-image: -moz-linear-gradient(#64b370, #5b9a65);
+      background-image: -webkit-linear-gradient(#64b370, #5b9a65);
+      background-image: linear-gradient(#64b370, #5b9a65);
+      background-repeat: repeat-x;
+      border-color: #5b9a65;
+    }
+  </style>
+  </head><body>
+  <header>
+    <a id="home" href="index.html"><div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink">
+        <circle cx="30" cy="30" r="30" />
+      </svg>
+      <span class="name">MNML</span>
+      </div></a>
+    <span class="nav">
+      <a id="install" href="https://play.google.com/store/apps/details?id=com.mnml.launcher">INSTALL</a>
+      <a href="updates.html">UPDATES</a>
+    </span>
+  </header>
+  
+  <section class="intro">
+    <h2>INTRODUCING THE SIMPLEST ANDROID HOME SCREEN.</h2>
+    <div class="phone">
+      <div class="app">
+        <div id="slider">
+          <div id="date">WED16</div>
+          <div id="sun">▴▾20:47</div>
+          <div id="time">22:22</div>
+          <div id="weather">74° Sky is clear</div>
+          <div id="drawer2" class="drawer">
+            <span class="drawer-handle">◁</span>
+            <div class="drawer-contents">[] [] []</div></div>
+          <div id="drawer" class="drawer">
+            <span class="drawer-handle">◁</span>
+            <div class="drawer-contents">
+              <img src="app-phone.png" />
+              <img src="app-instagram.png" />
+              <img id="drawerapp" src="app-chrome.png" />
+            </div>
+          </div>
+          <div id="packages">
+            <div class="package"><img src="app-calculator.png" />Calculator</div>
+            <div class="package"><img src="app-calendar.png" />Calendar</div>
+            <div class="package"><img src="app-camera.png" />Camera</div>
+            <div class="package"><img src="app-chrome.png" />Chrome</div>
+            <div class="package"><img src="app-clock.png" />Clock</div>
+            <div class="package"><img src="app-facebook.png" />Facebook</div>
+            <div class="package"><img src="app-gallery.png" />Gallery</div>
+            <div class="package"><img src="app-goggles.png" />Goggles</div>
+            <div class="package"><img src="app-google.png" />Google+</div>
+            <div class="package"><img src="app-hangout.png" />Hangouts</div>
+            <div class="package"><img src="app-maps.png" />Maps</div>
+            <div class="package"><img src="app-messages.png" />Messages</div>
+            <div class="package"><img src="app-mixcloud.png" />Mixcloud</div>
+            <div class="package"><img src="app-play.png" />Play</div>
+            <div class="package"><img src="app-weather.png" />Weather</div>
+            <div class="package"><img src="app-youtube.png" />Youtube</div>
+          </div>
+        </div>
+
+        <div id="overlay"><div id="menu">
+          <div id="menutitle">
+            <img src="app-chrome.png" /><span>Chrome</span>
+          </div>
+
+          <div id="menuopt1">
+            <div class="menuoption">Add to drawer</div>
+            <div class="menuoption">Hide</div>
+            <div class="menuoption">Uninstall</div>
+          </div>
+
+          <div id="menuopt2">
+            <div class="menuoption">Remove from drawer</div>
+            <div class="menuoption">Move to front</div>
+          </div>
+          </div></div>
+
+        <img id="phonebg"  class="chrome" src="phonebg.jpg" />
+        <img id="phonenav"  class="chrome" src="nav.png" />
+      </div>
+      <img class="chrome" src="chrome.png" />
+    </div>
+    <span class="note">*THE MNML HOME SCREEN MAY BE INSTALLED WITHOUT A ROOTED DEVICE. REQUIRES ANDROID 3.0+.</span> 
+  </section>
+  <script>
+    // _heavily_ modified from github.com/cferdinandi/smooth-scroll
+    function to(get, set, end, speed, delay, done) {
+      setTimeout(function() {
+        var start = parseFloat(get(), 10), percentage, position, time = 0,
+            autoscroll = setInterval(function() {
+              time += 16;
+              percentage = (time / speed > 1) ? 1 : time / speed;
+              position = start + ((end - start) * percentage * percentage);
+              set(position);
+              if(position == end || parseFloat(get(), 10) == end) {
+                clearInterval(autoscroll);
+                if(done !== undefined) done();
+              }
+            }, 16);
+      }, delay);
+    }
+
+    drawer.style.left = (drawer.offsetLeft - 20) + 'px';
+
+    // ~~make things move, haha~~
+    var delay = 700,
+        speed = 1000,
+        animator = {
+          swipe: function(pos, speed, delay, next) {
+            to(function() { return slider.scrollTop },
+               function(val) { slider.scrollTop = Math.floor(val) },
+               pos, speed, delay, next);
+          },
+          drawer: function(pos, speed, delay, next) {
+            to(function() { return drawer.style.left },
+               function(val) { return drawer.style.left = Math.floor(val) + 'px' },
+               pos, speed, delay, next);
+          },
+          fade: function(ele, pos, speed, delay, next) {
+            to(function() { return ele.style.opacity || 1 },         
+               function(val) { ele.style.opacity = val }, 
+               pos, speed, delay, next)
+          },
+          menu: function(menu, add, delay, next) {
+            setTimeout(function() {
+              if(add) {
+                menu.children[0].className += " selected"
+              } else {
+                menu.children[0].className = "menuoption"
+              }
+              next();
+            }, delay);
+          },
+        };
+    // this could be chained better, yolo pretty much
+    var specialapp; 
+    function pickapp() {
+      specialapp = packages.children[Math.floor(Math.random()*12)]
+      specialapp.childNodes[0].className = "dark"
+      menutitle.childNodes[1].src = drawerapp.src = specialapp.childNodes[0].src
+      menutitle.childNodes[2].innerText = specialapp.childNodes[1].nodeValue
+      drawerapp.style.display = ''
+    }
+
+    (function showOff() {
+      menuopt1.style.display = ''
+      menuopt2.style.display = 'none'
+      drawerapp.style.display = 'none'
+      animator.drawer(0, speed, delay, function() {
+        animator.swipe(318, speed, delay, function() {
+          pickapp();
+          animator.fade(specialapp, .5, speed*1.5, delay, function() {
+            specialapp.childNodes[0].className = ''
+            animator.fade(specialapp, 1, speed*.1, delay*0, function() {
+              animator.fade(overlay, 1, speed*.3, delay*0, function() {
+                animator.menu(menuopt1, true, delay, function() {
+                  animator.menu(menuopt1, false, delay, function() {
+                    animator.fade(overlay, 0, speed*.3, delay*0, function() {
+                      animator.swipe(0, speed*.4, delay*.6, function() {
+                        menuopt1.style.display = 'none'
+                        menuopt2.style.display = ''
+                        animator.fade(drawerapp, .5, speed*1.5, delay, function() {
+                          animator.fade(drawerapp, 1, speed*.1, delay*0, function() {
+                            animator.fade(overlay, 1, speed*.3, delay*0, function() {
+                              animator.menu(menuopt2, true, delay, function() {
+                                animator.menu(menuopt2, false, delay, function() {
+                                  drawerapp.style.display = 'none'
+                                  animator.fade(overlay, 0, speed*.3, delay*0, function() {
+                                    animator.drawer(slider.offsetWidth, speed*.4, delay, showOff);  // loop that. :)
+                                  });
+                                });
+                              });
+                            });
+                          });
+                        });
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    })();
+
+    // eh, might as well emulate this.
+    (function setTime() {
+      var today = new Date();
+      time.innerHTML = (today.getHours() < 10 ? '0' : '') + today.getHours() + ':' + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes(); 
+      date.innerHTML = ['SUN','MON','TUE','WED','THU','FRI','SAT'][today.getDay()] + today.getDate();
+      setTimeout(function(){setTime()}, 1000);
+    })();
+
+    // normally don't care about this sort of thing, but all the cool people do it:
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-53293822-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  </body></html>

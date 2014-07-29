@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <title>MNML for Android</title>
+  <style>
+    @font-face {
+      font-family: interstatem;
+      src: url(interstate-m.ttf);
+    }
+    @font-face {
+      font-family: interstatet;
+      src: url(interstate-t.ttf);
+    }
+    body {
+      height: 100%;
+      margin: 0;
+      color: #8F8D8E;
+      font: 16px "Helvetica Neue", Helvetica, arial, freesans, clean, sans-serif;
+      background-image: url('bg.png');
+      padding: 20px;
+      cursor: crosshair;
+    }
+    a {
+      cursor: crosshair;
+    }
+    header {
+      height: 95px;
+    }
+    header .nav {
+      float: right;
+      font-weight: 100;
+      font-size: 25px;
+      padding-top: 20px;
+    }
+    header .nav a {
+      padding: 0 5px;
+      text-decoration: none;
+      color: rgba(102, 89, 92, 0.35);
+    }
+    header .nav a:hover {
+      text-decoration: underline;
+      color: #4E4D4D;
+    }
+    h2 {
+      margin: 0;
+    }
+    svg {
+      height: 60px;
+      width: 60px;
+      margin: auto;
+      vertical-align: middle;
+    }
+    circle {
+      fill: #000;
+    }
+    circle:hover {
+      fill: #4E4D4D; 
+    }
+    section.intro {
+      text-align: center;
+    }
+    section.intro .note {
+      padding-top: 30px;
+      font-size: 10px;
+    }
+    .phone {
+      color: white;
+      position: relative;
+      font-size: 10px;
+      height: 500px;
+      width: 260px;
+      margin: auto;
+      margin-top: 45px;
+      margin-bottom: 45px;
+    }
+    .phone .app {
+      width: 220px;
+      padding: 60px 20px;
+    }
+    #overlay {
+      height: 387px;
+      width: 220px;
+      background: rgba(0, 0, 0, .3);
+      opacity: 0;
+      position: absolute; 
+      top: 61px;
+    }
+    #menu {
+      width: 190px;
+      background: rgb(30, 40, 40);
+      margin: 0 auto;
+      margin-top: 150px;
+      box-shadow: 0px 2px 10px #000;
+      border-top: 1px solid #333;
+      border-radius: 2px;
+      text-align: left;
+    }
+    #menutitle {
+      border-bottom: 3px solid #33B5E5;
+      color: #33B5E5;
+      font-size: 17px;
+      padding: 7px 0px 7px 10px;
+    }
+    #menutitle img {
+      height: 30px;
+      vertical-align: top;
+    }
+    #menutitle span {
+      padding: 5px;
+      display: inline-block;
+    }
+    #menu .menuoption {
+      font-size: 14px;
+      border-bottom: 1px solid #444;
+      padding: 7px 0px 7px 10px;
+    }
+    #menu .menuoption:last-child {
+      border-bottom: none; 
+    }
+    .logo {
+      float: left;
+    }
+    #home {
+      color: #8F8D8E;
+    }
+    .name {
+      line-height: 1.2;
+      padding-left: 18px;
+      font-size: 52px;
+      font-weight: 100;
+      vertical-align: middle;
+      letter-spacing: -7px;
+    }
+    a.button {
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+      padding: 7px 12px;
+      font-size: 13px;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+      white-space: nowrap;
+      border-radius: 3px;
+      border: 1px solid #d5d5d5;
+      vertical-align: middle;
+      cursor: pointer;
+      color: #fff;
+      background-color: #60b044;
+      background-image: -moz-linear-gradient(#8add6d, #60b044);
+      background-image: -webkit-linear-gradient(#8add6d, #60b044);
+      background-image: linear-gradient(#8add6d, #60b044);
+      background-repeat: repeat-x;
+      border-color: #5ca941;
+    }
+    .button:hover {
+      background-color: #5b9a65;
+      background-image: -moz-linear-gradient(#64b370, #5b9a65);
+      background-image: -webkit-linear-gradient(#64b370, #5b9a65);
+      background-image: linear-gradient(#64b370, #5b9a65);
+      background-repeat: repeat-x;
+      border-color: #5b9a65;
+    }
+  </style>
+  </head><body>
+  <header>
+    <a id="home" href="index.html"><div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink">
+        <circle cx="30" cy="30" r="30" />
+      </svg>
+      <span class="name">MNML</span>
+      </div></a>
+    <span class="nav">
+      <a id="install" href="https://play.google.com/store/apps/details?id=com.mnml.launcher">INSTALL</a>
+      <a href="updates.html">UPDATES</a>
+    </span>
+  </header>
+
+  <section class="intro">
+    <h2>INTRODUCING THE SIMPLEST ANDROID HOME SCREEN.</h2>
+
+    <span class="note">*THE MNML HOME SCREEN MAY BE INSTALLED WITHOUT A ROOTED DEVICE. REQUIRES ANDROID 3.0+.</span> 
+  </section>
+  <script>
+    // normally don't care about this sort of thing, but all the cool people do it:
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-53293822-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  </body></html>
