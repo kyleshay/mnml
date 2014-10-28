@@ -6,7 +6,7 @@
   <style>
     @font-face {
       font-family: aliquam;
-      src: url(aliquam.ttf);
+      src: url(Aliquam.ttf);
     }
     @font-face {
       font-family: interstatem;
@@ -20,18 +20,19 @@
       height: 100%;
       margin: 0;
       color: #8F8D8E;
-      font: 16px aliquam, "Helvetica Neue", Helvetica, arial, freesans, clean, sans-serif;
+      font: 16px "Helvetica Neue", Helvetica, arial, freesans, clean, sans-serif;
       background-image: url('bg.png');
       padding: 20px;
-      cursor: crosshair;
+      /*cursor: crosshair;*/
     }
     a {
-      cursor: crosshair;
+      /*cursor: crosshair;*/
     }
     header {
       height: 95px;
     }
     header .nav {
+      font: 25px aliquam, "Helvetica Neue", Helvetica, arial, freesans, clean, sans-serif; 
       float: right;
       font-weight: 100;
       font-size: 25px;
@@ -43,7 +44,7 @@
       color: rgba(102, 89, 92, 0.35);
     }
     header .nav a:hover {
-      text-decoration: underline;
+      text-decoration: none;
       color: #4E4D4D;
     }
     h2 {
@@ -66,6 +67,7 @@
       text-align: center;
     }
     section.intro .note {
+      font: 11px interstatem; 
       padding-top: 30px;
       font-size: 10px;
     }
@@ -138,7 +140,7 @@
     #sun {
       font: 10px interstatem;
       float: right;
-      padding: 8px;
+      padding: 10px;
     }
     #time {
       font: 47px interstatet;
@@ -196,6 +198,16 @@
       border-radius: 8px;
       margin-bottom: -2px;
     }
+    /*#phonebg {
+      height: 387px;
+      width: 220px;
+      position: absolute; 
+      top: 61px; 
+      z-index: -1;
+      background-image: -moz-linear-gradient(#8add6d, #60b044);
+      background-image: -webkit-linear-gradient(#8add6d, #60b044);
+      background-image: linear-gradient(#8add6d, #60b044);
+    }*/
     #phonebg {
       height: 387px;
       top: 61px;
@@ -221,12 +233,11 @@
         color: #8F8D8E;
     }
     .name {
+      font: 52px aliquam, "Helvetica Neue", Helvetica, arial, freesans, clean, sans-serif; 
       line-height: 1.2;
       padding-left: 18px;
-      font-size: 52px;
-      font-weight: 100;
       vertical-align: middle;
-      letter-spacing: -7px;
+      letter-spacing: -5px;
     }
     a.button {
       text-decoration: none;
@@ -329,7 +340,8 @@
           </div>
           </div></div>
 
-        <img id="phonebg"  class="chrome" src="phonebg.jpg" />
+        <img id="phonebg"  class="chrome" src="phonebg4.jpg" />
+        <!--<span id="phonebg" class="chrome"></span>-->
         <img id="phonenav"  class="chrome" src="nav.png" />
       </div>
       <img class="chrome" src="chrome.png" />
@@ -344,7 +356,7 @@
             autoscroll = setInterval(function() {
               time += 16;
               percentage = (time / speed > 1) ? 1 : time / speed;
-              position = start + ((end - start) * percentage * percentage);
+              position = start + ((end - start) * percentage * (2 - percentage));
               set(position);
               if(position == end || parseFloat(get(), 10) == end) {
                 clearInterval(autoscroll);
